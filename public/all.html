@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Document</title>
+</head>
+<body>
+    <a href='index.html'>ADD data</a>
+    <h1>Data Selfie app</h1>
+    <div class='data'></div>
+    <script >
+getData();
+async function getData(){
+   const response=await fetch('/api');
+   const data=await response.json()
+   console.log(data)
+ 
+   data.forEach(el=>{
+      const markup= `<div>Name: ${el.name}</div>
+                     <div>Location is: Latitude:${el.lat} Longitude:${el.lon}</br> 
+                     <img src='${el.image64}'/>   
+                        `;
+      document.querySelector('.data').insertAdjacentHTML('afterend',markup)
+    })
+}
+</script>
+</body>
+</html>
